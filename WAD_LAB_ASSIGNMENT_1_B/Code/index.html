@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Form</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/custom.css" rel="stylesheet" />
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <div style="" class="container my-10">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div style="margin-top: 100px;" class="card">
+            <div style="padding: 3px 10px" class="card-header bg-primary text-white">
+              <h4 class="card-title mb-0">Register</h4>
+            </div>
+            <div class="card-body">
+              <form id="form">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="confirmPassword" class="form-label"
+                    >Confirm Password</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                </div>
+                <div style="margin-top: 10px;" class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-block">
+                    Register
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+      $(function () {
+        $("#form").submit(function (e) {
+          e.preventDefault();
+          var name = $("#name").val();
+          var email = $("#email").val();
+          var password = $("#password").val();
+          var confirmPassword = $("#confirmPassword").val();
+          if (password != confirmPassword) {
+            alert("Password does not match");
+            return false;
+          }
+          $.ajax({
+            type: "POST",
+            url: "https://test-ajax.free.beeceptor.com",
+            data: {
+              name: name,
+              email: email,
+              password: password,
+            },
+            success: function (data) {
+              alert("Data sent to server");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
